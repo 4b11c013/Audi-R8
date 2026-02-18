@@ -1,0 +1,2250 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audi R8 | Precision Engineered Performance</title>
+    <meta name="description"
+        content="Explore the Audi R8 Coupe and Ultra Sport Series. Experience the future of automotive excellence through innovation, performance, and luxurious design.">
+    <meta name="keywords" content="Audi, R8, Sport Car, Luxury Vehicle, Quattro, Automotive Design">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="images/logo.png">
+
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Audi R8 | Precision Engineered Performance">
+    <meta property="og:description"
+        content="Experience the future of automotive excellence with the Audi Ultra Sport Series.">
+    <meta property="og:image" content="images/45度車.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Outfit', 'Microsoft JhengHei', sans-serif;
+            background: radial-gradient(circle at center, #ffffff 0%, #f8f9fa 100%);
+            color: #000000;
+            overflow-x: hidden;
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+            cursor: none;
+            /* 隱藏原生滑鼠以使用自定義滑鼠 */
+        }
+
+        /* Hide scrollbar for webkit browsers */
+        body::-webkit-scrollbar {
+            display: none;
+        }
+
+        html::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* 行動裝置滑鼠優化 */
+        @media (hover: none) and (pointer: coarse) {
+            body {
+                cursor: auto !important;
+            }
+
+            #cursor,
+            #cursor-follower {
+                display: none !important;
+            }
+        }
+
+        /* Preloader 樣式 - 升級為上下開門轉場 */
+        #preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 9999;
+            visibility: visible;
+        }
+
+        .preloader-panel {
+            position: absolute;
+            left: 0;
+            width: 100%;
+            height: 50%;
+            background: #000;
+            overflow: hidden;
+            transition: transform 1.2s cubic-bezier(0.86, 0, 0.07, 1);
+        }
+
+        .preloader-panel.top {
+            top: 0;
+        }
+
+        .preloader-panel.bottom {
+            bottom: 0;
+        }
+
+        /* 影片在面板中需定位以銜接 */
+        .preloader-panel video {
+            position: absolute;
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover;
+            opacity: 0.9;
+            /* 提高不透明度 */
+            filter: brightness(1.2);
+            /* 額外增加 20% 亮度 */
+        }
+
+        .preloader-panel.top video {
+            top: 0;
+        }
+
+        .preloader-panel.bottom video {
+            bottom: 0;
+            /* 讓下半部的影片垂直對齊底部以正確銜接 */
+        }
+
+        #preloader.loaded .preloader-panel.top {
+            transform: translateY(-100%);
+        }
+
+        #preloader.loaded .preloader-panel.bottom {
+            transform: translateY(100%);
+        }
+
+        /* 隱藏整個 preloader 容器防止擋住點擊 */
+        #preloader.loaded {
+            visibility: hidden;
+            transition: visibility 1.2s;
+        }
+
+        /* 自定義滑鼠樣式 */
+        #cursor {
+            width: 10px;
+            height: 10px;
+            background-color: #000;
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 10000;
+            transition: transform 0.1s ease-out, width 0.3s ease, height 0.3s ease, background-color 0.3s ease;
+            transform: translate(-50%, -50%);
+        }
+
+        #cursor-follower {
+            width: 40px;
+            height: 40px;
+            border: 1px solid rgba(0, 0, 0, 0.2);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            transition: transform 0.2s ease-out, width 0.3s ease, height 0.3s ease, border-color 0.3s ease;
+            transform: translate(-50%, -50%);
+        }
+
+        /* 滑鼠懸停在可點擊元素上的狀態 */
+        body.cursor-hover #cursor {
+            transform: translate(-50%, -50%) scale(0.5);
+            background-color: #fff;
+            mix-blend-mode: difference;
+        }
+
+        body.cursor-hover #cursor-follower {
+            width: 70px;
+            height: 70px;
+            background-color: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(2px);
+            border-color: transparent;
+        }
+
+        /* 全螢幕選單樣式 */
+        #full-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #fff;
+            z-index: 2000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transform: translateY(-100%);
+            transition: transform 0.8s cubic-bezier(0.86, 0, 0.07, 1);
+        }
+
+        #full-menu.active {
+            transform: translateY(0);
+        }
+
+        .full-menu-links {
+            list-style: none;
+            text-align: center;
+        }
+
+        .full-menu-links li {
+            margin: 30px 0;
+            overflow: hidden;
+        }
+
+        .full-menu-links a {
+            font-size: 5vw;
+            font-weight: 600;
+            color: #000;
+            text-decoration: none;
+            display: block;
+            text-transform: uppercase;
+            letter-spacing: 10px;
+            transform: translateY(100%);
+            transition: transform 0.8s cubic-bezier(0.23, 1, 0.32, 1), letter-spacing 0.3s ease;
+        }
+
+        #full-menu.active .full-menu-links a {
+            transform: translateY(0);
+        }
+
+        /* 延遲進場動畫 */
+        .full-menu-links li:nth-child(1) a {
+            transition-delay: 0.4s;
+        }
+
+        .full-menu-links li:nth-child(2) a {
+            transition-delay: 0.5s;
+        }
+
+        .full-menu-links li:nth-child(3) a {
+            transition-delay: 0.6s;
+        }
+
+        .full-menu-links li:nth-child(4) a {
+            transition-delay: 0.7s;
+        }
+
+        .full-menu-links a:hover {
+            letter-spacing: 20px;
+            color: #666;
+        }
+
+        .close-menu {
+            position: absolute;
+            top: 40px;
+            right: 60px;
+            font-size: 14px;
+            letter-spacing: 2px;
+            cursor: pointer;
+            text-transform: uppercase;
+        }
+
+        /* Header 文字在選單開啟時依然可見或調整 */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 30px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        header.scrolled {
+            padding: 15px 60px;
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 40px;
+            width: auto;
+            display: block;
+            transition: height 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        header.scrolled .logo img {
+            height: 30px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 40px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #000;
+            font-size: 13px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 5px 0;
+            opacity: 0.5;
+        }
+
+        nav a:hover,
+        nav a.active {
+            opacity: 1;
+        }
+
+        /* 導覽列動態底線 */
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: #000;
+            transition: width 0.3s ease;
+        }
+
+        nav a.active::after {
+            width: 100%;
+        }
+
+        .menu-btn {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .hamburger {
+            width: 20px;
+            height: 2px;
+            background: #000;
+            position: relative;
+        }
+
+        .hamburger::before,
+        .hamburger::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background: #000;
+            left: 0;
+        }
+
+        .hamburger::before {
+            top: -6px;
+        }
+
+        .hamburger::after {
+            top: 6px;
+        }
+
+        /* Main Content */
+        main {
+            margin-top: 100px;
+            min-height: calc(100vh - 100px);
+            position: relative;
+        }
+
+        /* Full-width Top Section */
+        .top-section {
+            position: relative;
+            width: 100%;
+            height: 90vh;
+            min-height: 500px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #ffffff;
+            margin-bottom: 0;
+        }
+
+        /* Side Text */
+        .side-text {
+            position: fixed;
+            top: 50%;
+            transform: translateY(-50%);
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+            font-size: 14px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #666;
+            z-index: 100;
+            transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+        }
+
+        .side-text.left {
+            left: 40px;
+        }
+
+        .side-text.right {
+            right: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .chevron {
+            width: 0;
+            height: 0;
+            border-left: 5px solid transparent;
+            border-right: 5px solid transparent;
+        }
+
+        .chevron.up {
+            border-bottom: 8px solid #666;
+        }
+
+        .chevron.down {
+            border-top: 8px solid #666;
+        }
+
+        /* Background Text in Top Section */
+        .top-section .bg-text {
+            position: absolute;
+            font-size: 300px;
+            font-weight: 900;
+            color: rgba(240, 240, 240, 0.3);
+            z-index: 5;
+            white-space: nowrap;
+            letter-spacing: 20px;
+            user-select: none;
+            pointer-events: none;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+
+        /* Car Image in Top Section */
+        .top-section .car-image-wrapper {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 10;
+            overflow: hidden;
+        }
+
+        .top-section .car-image,
+        .top-section .car-video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            display: block;
+            transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+        }
+
+        .top-section .car-video {
+            background: #000;
+            filter: blur(0px);
+            transition: opacity 0.5s ease-out, transform 0.5s ease-out, filter 0.5s ease-in-out;
+        }
+
+        .top-section .car-video.loading {
+            filter: blur(15px);
+            opacity: 0.5;
+        }
+
+        /* Scroll transition effect */
+        .top-section.scrolled .car-video {
+            opacity: 0;
+            transform: scale(0.8);
+        }
+
+        .top-section.scrolled .bg-text {
+            opacity: 0.1;
+        }
+
+        /* Mouse Scroll Indicator */
+        .mouse-scroll {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 20;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            opacity: 1;
+            transition: opacity 0.3s ease-out;
+        }
+
+        .top-section.scrolled .mouse-scroll {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .mouse {
+            width: 24px;
+            height: 40px;
+            border: 2px solid #666;
+            border-radius: 15px;
+            position: relative;
+        }
+
+        .mouse::before {
+            content: '';
+            position: absolute;
+            top: 8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 8px;
+            background: #666;
+            border-radius: 2px;
+            animation: scroll 1.5s infinite;
+        }
+
+        @keyframes scroll {
+            0% {
+                opacity: 1;
+                transform: translateX(-50%) translateY(0);
+            }
+
+            100% {
+                opacity: 0;
+                transform: translateX(-50%) translateY(12px);
+            }
+        }
+
+        .scroll-text {
+            font-size: 12px;
+            color: #666;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-top: 5px;
+        }
+
+        /* Car Display Area - Bottom Section */
+        .car-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 50vh;
+            position: relative;
+            padding: 0 200px 80px 200px;
+        }
+
+        /* Car Details Section */
+        .car-details {
+            width: 100%;
+            padding: 120px 200px;
+            background: #ffffff;
+            position: relative;
+        }
+
+        .details-title {
+            font-size: 48px;
+            font-weight: 200;
+            letter-spacing: 6px;
+            text-align: center;
+            margin-bottom: 80px;
+            color: #1a1a1a;
+            text-transform: uppercase;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .details-title.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .details-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 60px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .detail-item {
+            text-align: center;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .detail-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .detail-item:nth-child(1) {
+            transition-delay: 0.2s;
+        }
+
+        .detail-item:nth-child(2) {
+            transition-delay: 0.4s;
+        }
+
+        .detail-item:nth-child(3) {
+            transition-delay: 0.6s;
+        }
+
+        .detail-image {
+            width: 100%;
+            max-width: 400px;
+            height: 300px;
+            object-fit: cover;
+            margin-bottom: 30px;
+            border-radius: 4px;
+            filter: grayscale(20%);
+            transition: filter 0.3s ease, transform 0.3s ease;
+        }
+
+        .detail-item:hover .detail-image {
+            filter: grayscale(0%);
+            transform: scale(1.05);
+        }
+
+        .detail-name {
+            font-size: 24px;
+            font-weight: 300;
+            letter-spacing: 3px;
+            color: #1a1a1a;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .detail-description {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.6;
+            letter-spacing: 1px;
+        }
+
+        /* Color Selection Section */
+        .color-section {
+            width: 100%;
+            padding: 150px 200px;
+            background: transparent;
+            /* 改為透明以銜接 body 漸層 */
+            position: relative;
+            overflow: hidden;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+
+        /* 增加裝飾性的大背景文字 */
+        .color-section::before {
+            content: 'COLOR';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, calc(-50% + var(--ty, 0px)));
+            font-size: 20vw;
+            font-weight: 900;
+            color: rgba(0, 0, 0, 0.03);
+            z-index: 1;
+            white-space: nowrap;
+            letter-spacing: 50px;
+            pointer-events: none;
+            will-change: transform;
+        }
+
+        .color-content-wrapper {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 80px;
+        }
+
+        .color-info {
+            flex: 1;
+            opacity: 0;
+            transform: translateX(-50px);
+            /* 改為橫向進場 */
+            transition: opacity 1s cubic-bezier(0.23, 1, 0.32, 1), transform 1s cubic-bezier(0.23, 1, 0.32, 1);
+            position: relative;
+            z-index: 2;
+        }
+
+        .color-info.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .color-title {
+            font-size: 64px;
+            font-weight: 200;
+            letter-spacing: 8px;
+            margin-bottom: 40px;
+            color: #1a1a1a;
+            text-transform: uppercase;
+            line-height: 1.2;
+        }
+
+        .color-subtitle {
+            font-size: 32px;
+            font-weight: 300;
+            letter-spacing: 4px;
+            margin-bottom: 30px;
+            color: #1a1a1a;
+        }
+
+        .color-description {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.8;
+            letter-spacing: 1px;
+            margin-bottom: 50px;
+            max-width: 400px;
+        }
+
+        .color-selector-container {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .color-btn-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            cursor: pointer;
+            padding: 15px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .color-btn-wrapper:hover {
+            background: #f5f5f5;
+        }
+
+        .color-btn-wrapper.active {
+            background: #f0f0f0;
+        }
+
+        .color-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 2px solid #ddd;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .color-btn-wrapper:hover .color-btn {
+            transform: scale(1.1);
+            border-color: #999;
+        }
+
+        .color-btn-wrapper.active .color-btn {
+            border-color: #000;
+            border-width: 3px;
+            transform: scale(1.15);
+        }
+
+        .color-btn.blue {
+            background: linear-gradient(135deg, #002D62 0%, #0056b3 100%);
+            box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.3);
+        }
+
+        .color-btn.red {
+            background: linear-gradient(135deg, #8C0000 0%, #cc0000 100%);
+            box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.3);
+        }
+
+        .color-btn.yellow {
+            background: linear-gradient(135deg, #D4AF37 0%, #ffcc00 100%);
+            box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.3);
+        }
+
+        .color-label {
+            font-size: 18px;
+            font-weight: 300;
+            letter-spacing: 2px;
+            color: #1a1a1a;
+            text-transform: uppercase;
+        }
+
+        .color-display {
+            position: relative;
+            flex: 1;
+            height: 600px;
+            overflow: hidden;
+            background: transparent;
+        }
+
+        .color-car-image {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            opacity: 0;
+            transform: translateX(100px) scale(0.9);
+            /* 初始位置更遠一點 */
+            filter: blur(10px);
+            transition: opacity 1s cubic-bezier(0.23, 1, 0.32, 1), transform 1s cubic-bezier(0.23, 1, 0.32, 1), filter 1s ease;
+        }
+
+        .color-car-image.visible {
+            opacity: 1;
+            transform: translateX(0) scale(1);
+            filter: blur(0px);
+        }
+
+        .color-car-image.slide-out {
+            transform: translateX(-500px) scale(0.85) !important;
+            opacity: 0 !important;
+            filter: blur(5px) !important;
+            transition: transform 0.6s cubic-bezier(0.45, 0, 0.55, 1), opacity 0.4s ease !important;
+        }
+
+        .color-car-image.reset-right {
+            transform: translateX(500px) scale(0.85) !important;
+            opacity: 0 !important;
+            transition: none !important;
+        }
+
+        /* Background Text in Bottom Section */
+        .car-container .bg-text {
+            display: none;
+        }
+
+        .car-name {
+            font-size: 72px;
+            font-weight: 200;
+            letter-spacing: 8px;
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+            z-index: 10;
+            color: #1a1a1a;
+            text-transform: uppercase;
+            font-family: 'Outfit', 'Microsoft JhengHei', sans-serif;
+            overflow: hidden;
+            /* 為出現動畫準備 */
+            transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .car-name.changing {
+            opacity: 0;
+            transform: translateY(20px) scale(0.98);
+        }
+
+        /* 車名裝飾效果 */
+        .car-name::before,
+        .car-name::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 60px;
+            height: 1px;
+            background: #000;
+            opacity: 0.3;
+        }
+
+        .car-name::before {
+            left: -80px;
+        }
+
+        .car-name::after {
+            right: -80px;
+        }
+
+        /* 性能規格樣式 - 升級 HUD 手感 */
+        .car-specs {
+            display: flex;
+            gap: 40px;
+            margin-bottom: 40px;
+            z-index: 10;
+            position: relative;
+        }
+
+        .spec-item {
+            position: relative;
+            width: 120px;
+            height: 120px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .spec-hud-circle {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            transform: rotate(-90deg);
+        }
+
+        .spec-hud-circle circle {
+            fill: none;
+            stroke-width: 2;
+            stroke-linecap: round;
+        }
+
+        .spec-hud-circle .bg {
+            stroke: rgba(0, 0, 0, 0.05);
+        }
+
+        .spec-hud-circle .progress {
+            stroke: #000;
+            stroke-dasharray: 314;
+            stroke-dashoffset: 314;
+            transition: stroke-dashoffset 1s cubic-bezier(0.23, 1, 0.32, 1);
+            filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.2));
+        }
+
+        .spec-value {
+            display: block;
+            font-size: 24px;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 2px;
+            z-index: 2;
+        }
+
+        .spec-label {
+            font-size: 8px;
+            color: #999;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            z-index: 2;
+        }
+
+        /* Car Selector Circle */
+        .car-selector {
+            position: relative;
+            width: 600px;
+            height: 300px;
+            margin: 40px auto;
+            z-index: 10;
+        }
+
+        .selector-car-image {
+            position: absolute;
+            top: -50px;
+            left: 50%;
+            --px: 0px;
+            --py: 0px;
+            --s: 1;
+            transform: translateX(calc(-50% + var(--px))) translateY(var(--py)) scale(var(--s));
+            width: 400px;
+            height: auto;
+            z-index: 5;
+            opacity: 0.9;
+            transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1), opacity 0.3s ease;
+            will-change: transform;
+        }
+
+        /* 順滑流光效果 */
+        .car-selector::after {
+            content: '';
+            position: absolute;
+            top: -50px;
+            /* 跟隨車子位置 */
+            left: 50%;
+            transform: translateX(-50%) scale(var(--s, 1));
+            width: 600px;
+            /* 與容器同寬 */
+            height: 300px;
+            /* 涵蓋車身高度 */
+            z-index: 6;
+            pointer-events: none;
+
+            /* 建立一道斜向的高質感光束 */
+            background: linear-gradient(105deg,
+                    rgba(255, 255, 255, 0) 0%,
+                    rgba(255, 255, 255, 0) 40%,
+                    rgba(255, 255, 255, 0.4) 50%,
+                    rgba(255, 255, 255, 0) 60%,
+                    rgba(255, 255, 255, 0) 100%);
+            background-size: 200% 100%;
+            mix-blend-mode: overlay;
+            animation: smoothGlint 5s infinite linear;
+        }
+
+        @keyframes smoothGlint {
+            0% {
+                background-position: 200% 0;
+            }
+
+            100% {
+                background-position: -100% 0;
+            }
+        }
+
+        .selector-car-image.slide-out {
+            transform: translateX(calc(-50% - 500px)) scale(0.85) !important;
+            opacity: 0 !important;
+            transition: transform 0.6s cubic-bezier(0.45, 0, 0.55, 1), opacity 0.4s ease !important;
+        }
+
+        .selector-car-image.reset-right {
+            transform: translateX(calc(-50% + 500px)) scale(0.85) !important;
+            opacity: 0 !important;
+            transition: none !important;
+        }
+
+        /* --- 個人微調區：你可以在這裡調整每台車的大小與位置 --- */
+
+        /* 1. TT QUATTRO 微調 */
+        .selector-car-image.model-tt {
+            width: 470px;
+            /* 調整大小 */
+            margin-top: -60px;
+            /* 調整上下位置：正數往下，負數往上 */
+        }
+
+        /* 2. RS LINE 微調 */
+        .selector-car-image.model-rs {
+            width: 470px;
+            margin-top: -70px;
+        }
+
+        /* 3. A2 TURBO 微調 */
+        .selector-car-image.model-a2 {
+            width: 380px;
+            margin-top: -15px;
+        }
+
+        /* 4. A8 QUATTRO 微調 */
+        .selector-car-image.model-a8 {
+            width: 350px;
+            margin-top: -15px;
+            margin-left: -30px;
+            /* 這裡可以調整水平位置：負值往左，正值往右 */
+        }
+
+        /* --- 微調區結束 --- */
+
+        .selector-circle {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: 2px solid #e0e0e0;
+            border-radius: 50%;
+            border-top: none;
+            transition: opacity 0.5s ease, border-color 0.5s ease;
+            z-index: 1;
+        }
+
+        .selector-dot {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: #ffffff;
+            border: 2px solid #000;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            cursor: pointer;
+            transition: all 0.3s;
+            box-sizing: border-box;
+            z-index: 2;
+        }
+
+        /* 確保所有點都使用相同大小，沒有激活狀態變化 */
+        .dot-tt,
+        .dot-rs,
+        .dot-a2,
+        .dot-a8 {
+            width: 12px;
+            height: 12px;
+        }
+
+        /* 移除激活狀態的大小變化 */
+        .selector-dot.active {
+            width: 12px;
+            height: 12px;
+            border-width: 2px;
+        }
+
+        .selector-dot:hover {
+            transform: translate(-50%, -50%) scale(1.3);
+        }
+
+        .selector-label {
+            position: absolute;
+            font-size: 12px;
+            letter-spacing: 1px;
+            color: #666;
+            white-space: nowrap;
+            transform: translate(-50%, -50%);
+            margin-top: 35px;
+        }
+
+        /* Position dots - 精確貼在圓弧線上 */
+        /* 圓環容器: 600px 寬, 300px 高, 圓心在 (300, 150), 半徑 150px */
+        .dot-tt {
+            left: 20%;
+            top: 89%;
+        }
+
+        .dot-rs {
+            left: 40%;
+            top: 95%;
+        }
+
+        .dot-a2 {
+            left: 60%;
+            top: 95%;
+        }
+
+        .dot-a8 {
+            left: 80%;
+            top: 89%;
+        }
+
+        /* Action Buttons */
+        .action-buttons {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 0 200px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .btn {
+            padding: 15px 40px;
+            background: transparent;
+            border: 1px solid #000;
+            color: #000;
+            font-size: 14px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        .btn:hover {
+            background: #000;
+            color: #fff;
+        }
+
+        .btn-icon {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #ff0000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 6px;
+        }
+
+        .btn-icon::after {
+            content: '▼';
+        }
+
+        .btn-gear {
+            font-size: 18px;
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .top-section {
+                min-height: 400px;
+            }
+
+            .top-section .bg-text {
+                font-size: 200px;
+            }
+
+            .car-container {
+                padding: 0 100px 60px 100px;
+            }
+
+            .car-name {
+                font-size: 48px;
+            }
+
+            .action-buttons {
+                padding: 0 100px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 15px 30px;
+                background: #fff;
+                /* 手機端固體背景更穩定 */
+            }
+
+            nav {
+                display: none;
+                /* 在手機端隱藏長串文字導覽，引導使用 MENU 按鈕 */
+            }
+
+            .logo img {
+                height: 30px;
+            }
+
+            .side-text {
+                display: none;
+            }
+
+            .top-section {
+                height: 40vh;
+                min-height: 300px;
+            }
+
+            .top-section .bg-text {
+                font-size: 120px;
+            }
+
+
+            .car-specs {
+                gap: 15px;
+                justify-content: center;
+                flex-wrap: wrap;
+                /* 讓 HUD 在太窄時可以換行 */
+            }
+
+            .spec-item {
+                width: 90px;
+                height: 90px;
+            }
+
+            .spec-value {
+                font-size: 18px;
+            }
+
+            .car-selector {
+                width: 100%;
+                max-width: 320px;
+                height: 250px;
+            }
+
+            .selector-car-image {
+                width: 250px;
+            }
+
+            .car-details {
+                padding: 80px 30px;
+            }
+
+            .details-title {
+                font-size: 36px;
+                margin-bottom: 50px;
+            }
+
+            .details-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .detail-image {
+                max-width: 100%;
+                height: 250px;
+            }
+
+            .detail-name {
+                font-size: 20px;
+            }
+
+            .color-section {
+                padding: 80px 30px;
+                min-height: auto;
+            }
+
+            .color-content-wrapper {
+                flex-direction: column;
+                gap: 40px;
+            }
+
+            .color-info {
+                text-align: center;
+                width: 100%;
+            }
+
+            .color-selector-container {
+                justify-content: center;
+                margin-top: 20px;
+            }
+
+            .color-display {
+                height: 200px;
+                order: -1;
+                /* 讓圖片在手機端出現在按鈕上方 */
+            }
+        }
+
+        /* Footer 樣式 */
+        footer {
+            background: #111;
+            color: #fff;
+            padding: 100px 60px 40px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 80px;
+            max-width: 1400px;
+            margin: 0 auto 80px;
+        }
+
+        .footer-logo-text {
+            font-size: 24px;
+            letter-spacing: 10px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .footer-desc {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.8;
+            max-width: 300px;
+        }
+
+        .footer-head {
+            font-size: 12px;
+            letter-spacing: 2px;
+            color: #fff;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 15px;
+        }
+
+        .footer-links a {
+            color: #666;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: #fff;
+        }
+
+        .footer-social-links {
+            display: flex;
+            gap: 20px;
+            list-style: none;
+            padding: 0;
+            margin-top: 10px;
+        }
+
+        .footer-social-links a svg {
+            width: 20px;
+            height: 20px;
+            fill: #666;
+            transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .footer-social-links a:hover svg {
+            fill: #fff;
+            transform: translateY(-5px);
+        }
+
+        .footer-bottom {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding-top: 40px;
+            border-top: 1px solid #222;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 12px;
+            color: #444;
+            letter-spacing: 1px;
+        }
+
+        @media (max-width: 768px) {
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .car-specs {
+                gap: 30px;
+            }
+
+            .spec-value {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+
+<body id="top">
+    <!-- Custom Cursor -->
+    <div id="cursor"></div>
+    <div id="cursor-follower"></div>
+
+    <!-- Full Screen Menu -->
+    <div id="full-menu">
+        <div class="close-menu" onclick="toggleMenu()">CLOSE X</div>
+        <ul class="full-menu-links">
+            <li><a href="#models" onclick="toggleMenu()">THE MODELS</a></li>
+            <li><a href="#details" onclick="toggleMenu()">INNOVATION</a></li>
+            <li><a href="#personalize" onclick="toggleMenu()">EXPERIENCE</a></li>
+            <li><a href="#footer" onclick="toggleMenu()">CONTACT</a></li>
+        </ul>
+    </div>
+
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="preloader-panel top">
+            <video src="images/開場.mp4" autoplay muted loop playsinline></video>
+        </div>
+        <div class="preloader-panel bottom">
+            <video src="images/開場.mp4" autoplay muted loop playsinline></video>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="logo">
+            <img src="images/logo.png" alt="Audi Logo">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#top" class="active">HOME</a></li>
+                <li><a href="#models">MODELS</a></li>
+                <li><a href="#details">HISTORY</a></li>
+                <li><a href="#personalize">PERSONALIZE</a></li>
+            </ul>
+        </nav>
+        <div class="menu-btn">
+            <span>MENU</span>
+            <div class="hamburger"></div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Side Text -->
+        <div class="side-text left">ULTRA SPORT SERIES</div>
+        <div class="side-text right">
+            <div class="chevron up"></div>
+            <span>SLIDE CARS</span>
+            <div class="chevron down"></div>
+        </div>
+
+        <!-- Top Section - Full Width Car Image -->
+        <div class="top-section">
+            <!-- Car Video -->
+            <div class="car-image-wrapper">
+                <video src="images/影片.mp4" class="car-video" id="carVideo" muted autoplay loop playsinline></video>
+            </div>
+
+            <!-- Mouse Scroll Indicator -->
+            <div class="mouse-scroll">
+                <div class="mouse"></div>
+                <div class="scroll-text">Scroll</div>
+            </div>
+        </div>
+
+        <div class="car-container" id="models">
+            <!-- Car Name -->
+            <h1 class="car-name">Audi R8 Coupe</h1>
+
+            <!-- Car Specs仪表 -->
+            <div class="car-specs">
+                <div class="spec-item">
+                    <svg class="spec-hud-circle">
+                        <circle class="bg" cx="60" cy="60" r="50"></circle>
+                        <circle class="progress" id="hud-accel" cx="60" cy="60" r="50"></circle>
+                    </svg>
+                    <span class="spec-value" id="spec-accel">3.7</span>
+                    <span class="spec-label">0-100 KM/H</span>
+                </div>
+                <div class="spec-item">
+                    <svg class="spec-hud-circle">
+                        <circle class="bg" cx="60" cy="60" r="50"></circle>
+                        <circle class="progress" id="hud-hp" cx="60" cy="60" r="50"></circle>
+                    </svg>
+                    <span class="spec-value" id="spec-hp">400</span>
+                    <span class="spec-label">HORSEPOWER</span>
+                </div>
+                <div class="spec-item">
+                    <svg class="spec-hud-circle">
+                        <circle class="bg" cx="60" cy="60" r="50"></circle>
+                        <circle class="progress" id="hud-speed" cx="60" cy="60" r="50"></circle>
+                    </svg>
+                    <span class="spec-value" id="spec-speed">250</span>
+                    <span class="spec-label">TOP SPEED</span>
+                </div>
+            </div>
+
+            <!-- Car Selector -->
+            <div class="car-selector">
+                <!-- Car Image in Circle -->
+                <img src="images/45度車.png" alt="Audi Car" class="selector-car-image">
+
+                <div class="selector-circle"></div>
+
+                <div class="selector-dot dot-tt active" data-car="tt">
+                    <span class="selector-label">TT QUATTRO</span>
+                </div>
+                <div class="selector-dot dot-rs" data-car="rs">
+                    <span class="selector-label">RS LINE</span>
+                </div>
+                <div class="selector-dot dot-a2" data-car="a2">
+                    <span class="selector-label">A2 TURBO</span>
+                </div>
+                <div class="selector-dot dot-a8" data-car="a8">
+                    <span class="selector-label">A8 QUATTRO</span>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Car Details Section -->
+        <div class="car-details">
+            <h2 class="details-title" id="details">Details</h2>
+            <div class="details-grid">
+                <div class="detail-item">
+                    <img src="images/車燈.png" alt="Headlights" class="detail-image">
+                    <h3 class="detail-name">Headlights</h3>
+                    <p class="detail-description">Advanced LED technology illuminating the path ahead with clarity and
+                        precision.</p>
+                </div>
+                <div class="detail-item">
+                    <img src="images/車子輪胎.png" alt="Wheels" class="detail-image">
+                    <h3 class="detail-name">Wheels</h3>
+                    <p class="detail-description">Precision-engineered wheels designed for ultimate performance and
+                        style.</p>
+                </div>
+                <div class="detail-item">
+                    <img src="images/椅子.jpg" alt="Interior" class="detail-image">
+                    <h3 class="detail-name">Interior</h3>
+                    <p class="detail-description">Luxurious interior design combining comfort with cutting-edge
+                        technology.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Color Selection Section -->
+        <div class="color-section">
+            <div class="color-content-wrapper">
+                <div class="color-info" id="personalize">
+                    <div class="color-title">Choose Your Color</div>
+                    <div class="color-subtitle">Personalize</div>
+                    <p class="color-description">Select from our premium color options to match your style and
+                        personality.</p>
+                    <div class="color-selector-container">
+                        <div class="color-btn-wrapper active" data-color="blue" data-image="images/藍色.png">
+                            <div class="color-btn blue"></div>
+                            <span class="color-label">Blue</span>
+                        </div>
+                        <div class="color-btn-wrapper" data-color="red" data-image="images/紅色.png">
+                            <div class="color-btn red"></div>
+                            <span class="color-label">Red</span>
+                        </div>
+                        <div class="color-btn-wrapper" data-color="yellow" data-image="images/黃色.png">
+                            <div class="color-btn yellow"></div>
+                            <span class="color-label">Yellow</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="color-display">
+                    <!-- 移除 active，由 JS 判斷進場時加上 visible -->
+                    <img src="images/藍色.png" alt="Blue Car" class="color-car-image" id="colorCarImage">
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer id="footer">
+        <div class="footer-grid">
+            <div class="footer-info">
+                <div class="footer-logo-text">AUDI</div>
+                <p class="footer-desc">Experience the future of automotive excellence. Innovation, performance, and
+                    luxurious design combined into one masterpiece.</p>
+            </div>
+            <div>
+                <h4 class="footer-head">Explore</h4>
+                <ul class="footer-links">
+                    <li><a href="#">Models</a></li>
+                    <li><a href="#">Technology</a></li>
+                    <li><a href="#">Design</a></li>
+                    <li><a href="#">Safety</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="footer-head">Services</h4>
+                <ul class="footer-links">
+                    <li><a href="#">Test Drive</a></li>
+                    <li><a href="#">Configurator</a></li>
+                    <li><a href="#">Finance</a></li>
+                    <li><a href="#">Ownership</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="footer-head">Follow</h4>
+                <ul class="footer-social-links">
+                    <li><a href="#" aria-label="Instagram">
+                            <svg viewBox="0 0 24 24">
+                                <path
+                                    d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                            </svg>
+                        </a></li>
+                    <li><a href="#" aria-label="Facebook">
+                            <svg viewBox="0 0 24 24">
+                                <path
+                                    d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z" />
+                            </svg>
+                        </a></li>
+                    <li><a href="#" aria-label="Youtube">
+                            <svg viewBox="0 0 24 24">
+                                <path
+                                    d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z" />
+                            </svg>
+                        </a></li>
+                    <li><a href="#" aria-label="TikTok">
+                            <svg viewBox="0 0 24 24">
+                                <path
+                                    d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.08 2.7 1.62 4.24 1.79l-.03 3.84c-1.5-.09-3-.77-4.13-1.77-.13-.12-.24-.25-.35-.39v5.02c.01 6.39-7.03 9.47-11.01 5.48-3.98-3.99-.91-11.02 5.48-11.01.03.8-.02 1.6.01 2.4-3.14-.14-5.22 3.17-3.9 5.96 1.31 2.79 5.61 2.31 6.2-.74V.02z" />
+                            </svg>
+                        </a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 AUDI PRECISION. ALL RIGHTS RESERVED.</p>
+            <p>PRIVACY POLICY | COOKIES SETTINGS</p>
+        </div>
+    </footer>
+
+    <script>
+        // 強制每次重新整理回到頁面頂端
+        if ('scrollRestoration' in history) {
+            history.scrollRestoration = 'manual';
+        }
+        window.scrollTo(0, 0);
+
+        // Calculate dot positions on the circle arc - 精確對齊線條中心
+        function positionDotsOnArc() {
+            const carSelector = document.querySelector('.car-selector');
+            if (!carSelector) return;
+
+            const selectorCircle = document.querySelector('.selector-circle');
+            if (!selectorCircle) return;
+
+            const rect = carSelector.getBoundingClientRect();
+            const width = rect.width || 600;   // 實際容器寬度
+            const height = rect.height || 300;  // 實際容器高度
+            const centerX = width / 2;          // 圓心 x
+            const centerY = height / 2;         // 圓心 y
+            const radius = height / 2;         // 半徑（等於高度的一半）
+            const borderWidth = 2;              // 線條寬度
+
+            // 計算每個點在圓弧上的位置
+            // offsetY: 上下偏移量（正數=往下，負數=往上，單位：百分比）
+            const dotPositions = [
+                { left: 0.20, class: 'dot-tt', offsetY: 0 },  // 20%
+                { left: 0.40, class: 'dot-rs', offsetY: 2.8 },  // 40% - 調整這個 offsetY 來改變上下位置
+                { left: 0.60, class: 'dot-a2', offsetY: 2.8 },  // 60%
+                { left: 0.80, class: 'dot-a8', offsetY: 0 }   // 80%
+            ];
+
+            dotPositions.forEach(pos => {
+                const dot = document.querySelector(`.${pos.class}`);
+                if (dot) {
+                    const x = width * pos.left;
+                    // 計算下半圓的 y 座標: y = centerY + sqrt(radius² - (x - centerX)²)
+                    const dx = x - centerX;
+                    const distanceFromCenter = Math.abs(dx);
+
+                    // 確保點在圓內
+                    if (distanceFromCenter <= radius) {
+                        const dy = Math.sqrt(radius * radius - dx * dx);
+                        // 下半圓，所以是 centerY + dy
+                        // 考慮線條寬度，讓圓圈中心對齊線條中心
+                        const y = centerY + dy;
+
+                        // 轉換為百分比，並加上偏移量
+                        const topPercent = (y / height) * 100 + (pos.offsetY || 0);
+
+                        dot.style.left = `${pos.left * 100}%`;
+                        dot.style.top = `${topPercent}%`;
+                    }
+                }
+            });
+        }
+
+        // 頁面載入後計算位置
+        window.addEventListener('load', positionDotsOnArc);
+        window.addEventListener('resize', positionDotsOnArc);
+
+        // Car selector interaction
+        const dots = document.querySelectorAll('.selector-dot');
+        const carVideo = document.getElementById('carVideo');
+        const carName = document.querySelector('.car-name');
+
+        // Set initial transition for car video
+        carVideo.style.transition = 'opacity 0.5s ease-in-out';
+        carVideo.style.opacity = '1';
+
+        // --- Numerical animation function with HUD support ---
+        function animateNumber(id, target, duration, decimals = 0, maxValue = 100) {
+            const element = document.getElementById(id);
+            const hudId = id.replace('spec-', 'hud-');
+            const hudElement = document.getElementById(hudId);
+            if (!element) return;
+
+            let start = parseFloat(element.textContent) || 0;
+            let startTime = null;
+
+            function animation(currentTime) {
+                if (!startTime) startTime = currentTime;
+                const progress = Math.min((currentTime - startTime) / duration, 1);
+                const current = start + (target - start) * progress;
+
+                element.textContent = current.toFixed(decimals);
+
+                // Update HUD Circle
+                if (hudElement) {
+                    const circum = 2 * Math.PI * 50; // r=50
+                    let percentage;
+                    if (id === 'spec-accel') {
+                        percentage = Math.max(0, 1 - (current / 10)); // 0-100 越快越滿
+                    } else {
+                        percentage = Math.min(1, current / maxValue);
+                    }
+                    const offset = circum * (1 - percentage);
+                    hudElement.style.strokeDashoffset = offset;
+                }
+
+                if (progress < 1) {
+                    requestAnimationFrame(animation);
+                }
+            }
+            requestAnimationFrame(animation);
+        }
+
+        // Car data mapping with specs
+        const carData = {
+            tt: {
+                name: 'Audi TT Quattro',
+                video: 'images/影片.mp4',
+                image: 'images/TT QUATTRO.png',
+                specs: { accel: 3.7, hp: 400, speed: 250 }
+            },
+            rs: {
+                name: 'Audi R8 Coupe RS Line',
+                video: 'images/影片.mp4',
+                image: 'images/RS LINE.png',
+                specs: { accel: 3.1, hp: 610, speed: 331 }
+            },
+            a2: {
+                name: 'Audi A2 Turbo',
+                video: 'images/影片.mp4',
+                image: 'images/A2 TURBO.png',
+                specs: { accel: 5.2, hp: 250, speed: 210 }
+            },
+            a8: {
+                name: 'Audi A8 Quattro',
+                video: 'images/影片.mp4',
+                image: 'images/A8 QUATTRO.png',
+                specs: { accel: 4.5, hp: 460, speed: 250 }
+            }
+        };
+
+        // Initialize HUD stats for first car
+        setTimeout(() => {
+            const firstCar = carData.tt;
+            animateNumber('spec-accel', firstCar.specs.accel, 1500, 1, 10);
+            animateNumber('spec-hp', firstCar.specs.hp, 1500, 0, 800);
+            animateNumber('spec-speed', firstCar.specs.speed, 1500, 0, 400);
+        }, 5500);
+
+        dots.forEach(dot => {
+            dot.addEventListener('click', function () {
+                // Remove active class from all dots
+                dots.forEach(d => d.classList.remove('active'));
+
+                // Add active class to clicked dot
+                this.classList.add('active');
+
+                // Get car data
+                const carType = this.dataset.car;
+                const car = carData[carType];
+
+                // Update car specs with animation
+                animateNumber('spec-accel', car.specs.accel, 1000, 1, 10);
+                animateNumber('spec-hp', car.specs.hp, 1000, 0, 800);
+                animateNumber('spec-speed', car.specs.speed, 1000, 0, 400);
+
+                // Update central car image with driving animation
+                const selectorCarImage = document.querySelector('.selector-car-image');
+                if (selectorCarImage) {
+                    selectorCarImage.classList.add('slide-out');
+
+                    setTimeout(() => {
+                        selectorCarImage.classList.remove('slide-out');
+                        selectorCarImage.classList.add('reset-right');
+                        selectorCarImage.src = car.image;
+
+                        // 移除所有型號類別並加上當前型號類別，方便個別微調
+                        selectorCarImage.classList.remove('model-tt', 'model-rs', 'model-a2', 'model-a8');
+                        selectorCarImage.classList.add(`model-${carType}`);
+
+                        // Force reflow
+                        void selectorCarImage.offsetWidth;
+
+                        setTimeout(() => {
+                            selectorCarImage.classList.remove('reset-right');
+                        }, 50);
+                    }, 600);
+                }
+
+                // Update car video with fade and blur effect
+                carVideo.classList.add('loading');
+                carName.classList.add('changing'); // 觸發標題退出動畫
+
+                setTimeout(() => {
+                    carVideo.src = car.video;
+                    carVideo.load();
+                    carName.textContent = car.name;
+                    carName.classList.remove('changing'); // 觸發標題進入動畫
+
+                    carVideo.play().then(() => {
+                        carVideo.classList.remove('loading');
+                    }).catch(() => {
+                        carVideo.classList.remove('loading');
+                    });
+                }, 400);
+            });
+        });
+
+        // Smooth scroll for buttons
+        document.querySelectorAll('.btn').forEach(btn => {
+            btn.addEventListener('click', function (e) {
+                e.preventDefault();
+                // Add your navigation logic here
+                console.log('Button clicked:', this.textContent.trim());
+            });
+        });
+
+        // Menu button interaction
+        document.querySelector('.menu-btn').addEventListener('click', function () {
+            console.log('Menu clicked');
+            // Add menu toggle logic here
+        });
+
+        // Ensure video loads and displays properly
+        carVideo.addEventListener('loadeddata', function () {
+            this.style.opacity = '1';
+        });
+
+        // Ensure video plays
+        carVideo.play().catch(function (error) {
+            console.log('Video autoplay prevented:', error);
+        });
+
+        // Scroll transition effect
+        const topSection = document.querySelector('.top-section');
+        let lastScrollTop = 0;
+
+        window.addEventListener('scroll', function () {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            const topSectionHeight = topSection.offsetHeight;
+            const scrollProgress = scrollTop / topSectionHeight;
+
+            // --- Feature 1: Header Shrink ---
+            const header = document.querySelector('header');
+            if (scrollTop > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+
+            // --- Feature 3: Color Background Parallax ---
+            const colorSection = document.querySelector('.color-section');
+            if (colorSection) {
+                const sectionTop = colorSection.offsetTop;
+                const windowHeight = window.innerHeight;
+                if (scrollTop > sectionTop - windowHeight && scrollTop < sectionTop + colorSection.offsetHeight) {
+                    const relativeScroll = scrollTop - sectionTop;
+                    colorSection.style.setProperty('--ty', `${relativeScroll * 0.1}px`);
+                }
+            }
+
+            // Add scrolled class when scrolling down
+            if (scrollTop > 50) {
+                topSection.classList.add('scrolled');
+
+                // Dynamic opacity and scale based on scroll (縮小淡出效果)
+                const opacity = Math.max(0, 1 - scrollProgress * 1.2); // 完全淡出
+                const scale = Math.max(0.7, 1 - scrollProgress * 0.3); // 縮小到 0.7
+
+                carVideo.style.opacity = opacity;
+                carVideo.style.transform = `scale(${scale})`;
+
+                // Hide mouse scroll indicator
+                const mouseScroll = document.querySelector('.mouse-scroll');
+                if (mouseScroll) {
+                    mouseScroll.style.opacity = Math.max(0, 1 - scrollProgress * 2);
+                }
+
+                // Side text fade and scale (縮小淡出效果)
+                const sideTexts = document.querySelectorAll('.side-text');
+                sideTexts.forEach(sideText => {
+                    const sideOpacity = Math.max(0, 1 - scrollProgress * 1.2);
+                    const sideScale = Math.max(0.7, 1 - scrollProgress * 0.3);
+                    sideText.style.opacity = sideOpacity;
+                    sideText.style.transform = `translateY(-50%) scale(${sideScale})`;
+                });
+
+                // Car selector image zoom effect (滾動時放大)
+                const selectorCarImage = document.querySelector('.selector-car-image');
+                if (selectorCarImage) {
+                    // 根據滾動進度直接放大，使用 transform scale 優化效能
+                    const topSectionHeight = topSection.offsetHeight;
+                    const zoomProgress = Math.min(1, scrollTop / (topSectionHeight * 0.8));
+
+                    // 從 1.0 放大到 1.75 (等同於從 400px 變 700px)
+                    const currentScale = 1 + (zoomProgress * 0.75);
+                    selectorCarImage.style.setProperty('--s', currentScale);
+                }
+
+                // Circle line fade effect (線條淡化效果)
+                const selectorCircle = document.querySelector('.selector-circle');
+                const carContainer = document.querySelector('.car-container');
+                if (selectorCircle && carContainer) {
+                    const containerTop = carContainer.offsetTop;
+                    const windowHeight = window.innerHeight;
+
+                    // 當滾動到容器區域時開始淡化
+                    if (scrollTop > containerTop - windowHeight * 0.5) {
+                        const fadeStart = containerTop - windowHeight * 0.5;
+                        const fadeDistance = windowHeight * 0.8;
+                        const fadeProgress = Math.min(1, (scrollTop - fadeStart) / fadeDistance);
+
+                        // 從完全不透明淡化到 0.3
+                        const circleOpacity = Math.max(0.3, 1 - fadeProgress * 0.7);
+                        selectorCircle.style.opacity = circleOpacity;
+
+                        // 也可以讓邊框顏色變淡
+                        const colorValue = Math.floor(224 - fadeProgress * 100); // 從 #e0e0e0 變淡
+                        selectorCircle.style.borderColor = `rgb(${colorValue}, ${colorValue}, ${colorValue})`;
+                    } else {
+                        selectorCircle.style.opacity = '1';
+                        selectorCircle.style.borderColor = '#e0e0e0';
+                    }
+                }
+            } else {
+                topSection.classList.remove('scrolled');
+                carVideo.style.opacity = '1';
+                carVideo.style.transform = 'scale(1)';
+
+                // Show mouse scroll indicator
+                const mouseScroll = document.querySelector('.mouse-scroll');
+                if (mouseScroll) {
+                    mouseScroll.style.opacity = '1';
+                }
+
+                // Reset side text
+                const sideTexts = document.querySelectorAll('.side-text');
+                sideTexts.forEach(sideText => {
+                    sideText.style.opacity = '1';
+                    sideText.style.transform = 'translateY(-50%) scale(1)';
+                });
+
+                // Reset circle line
+
+                // Reset circle line
+                const selectorCircle = document.querySelector('.selector-circle');
+                if (selectorCircle) {
+                    selectorCircle.style.opacity = '1';
+                    selectorCircle.style.borderColor = '#e0e0e0';
+                }
+            }
+
+            lastScrollTop = scrollTop;
+        }, { passive: true });
+
+        // Car details scroll animation
+        function checkDetailsVisibility() {
+            const detailsTitle = document.querySelector('.details-title');
+            const detailItems = document.querySelectorAll('.detail-item');
+            const carDetails = document.querySelector('.car-details');
+
+            if (!carDetails) return;
+
+            const detailsTop = carDetails.offsetTop;
+            const detailsHeight = carDetails.offsetHeight;
+            const windowHeight = window.innerHeight;
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+            // 當細節區域進入視窗時顯示
+            if (scrollTop + windowHeight * 0.7 > detailsTop) {
+                if (detailsTitle) {
+                    detailsTitle.classList.add('visible');
+                }
+                detailItems.forEach(item => {
+                    item.classList.add('visible');
+                });
+            }
+        }
+
+        window.addEventListener('scroll', checkDetailsVisibility, { passive: true });
+        window.addEventListener('load', checkDetailsVisibility);
+
+        // Color selection functionality
+        const colorBtnWrappers = document.querySelectorAll('.color-btn-wrapper');
+        const colorCarImage = document.getElementById('colorCarImage');
+
+        colorBtnWrappers.forEach(wrapper => {
+            wrapper.addEventListener('click', function () {
+                // Remove active class from all wrappers
+                colorBtnWrappers.forEach(w => w.classList.remove('active'));
+
+                // Add active class to clicked wrapper
+                this.classList.add('active');
+
+                // Get new image source
+                const newImageSrc = this.dataset.image;
+
+                // Animate: slide out current image
+                if (colorCarImage) {
+                    colorCarImage.classList.add('slide-out');
+                    colorCarImage.classList.remove('visible');
+
+                    // 1. 車子向左開走後，切換圖片並「瞬間」移到右邊
+                    setTimeout(() => {
+                        colorCarImage.classList.remove('slide-out');
+                        colorCarImage.classList.add('reset-right');
+                        colorCarImage.src = newImageSrc;
+
+                        // 2. 強制重繪
+                        void colorCarImage.offsetWidth;
+
+                        // 3. 移除重置類別，觸發「由右開回」動畫
+                        setTimeout(() => {
+                            colorCarImage.classList.remove('reset-right');
+                            colorCarImage.classList.add('visible');
+                        }, 50);
+                    }, 600);
+                }
+            });
+        });
+
+        // Color section scroll animation
+        function checkColorVisibility() {
+            const colorInfo = document.querySelector('.color-info');
+            const colorSection = document.querySelector('.color-section');
+
+            if (!colorSection) return;
+
+            const sectionTop = colorSection.offsetTop;
+            const windowHeight = window.innerHeight;
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+            // 當顏色區域進入視窗時顯示
+            if (scrollTop + windowHeight * 0.7 > sectionTop) {
+                if (colorInfo) {
+                    colorInfo.classList.add('visible');
+                }
+                if (colorCarImage) {
+                    colorCarImage.classList.add('visible');
+                }
+            }
+        }
+
+        // 頁面載入後，等待一段時間自動進入
+        window.addEventListener('load', () => {
+            checkColorVisibility();
+
+            // 設定開場影片播放 5000 毫秒 (5秒) 後自動進入
+            setTimeout(() => {
+                enterSite();
+            }, 5000);
+        });
+
+        window.addEventListener('scroll', checkColorVisibility, { passive: true });
+
+        // Enter Experience Logic
+        function enterSite() {
+            const preloader = document.getElementById('preloader');
+            if (!preloader) return;
+
+            // 加入 loaded class 觸發上下門開啟動畫
+            preloader.classList.add('loaded');
+
+            // Allow main focus and background video play
+            const mainVideo = document.getElementById('carVideo');
+            if (mainVideo) mainVideo.play();
+        }
+
+        // Mouse Parallax for Vehicle
+        document.addEventListener('mousemove', (e) => {
+            const carImage = document.querySelector('.selector-car-image');
+            if (!carImage) return;
+
+            const x = (e.clientX - window.innerWidth / 2) / 50;
+            const y = (e.clientY - window.innerHeight / 2) / 50;
+
+            carImage.style.setProperty('--px', `${x}px`);
+            carImage.style.setProperty('--py', `${y}px`);
+        });
+
+        // Update scale on scroll (using the previously defined variable)
+        window.addEventListener('scroll', () => {
+            const selectorCarImage = document.querySelector('.selector-car-image');
+            const glintEffect = document.querySelector('.car-selector');
+            if (selectorCarImage) {
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                const topSectionHeight = document.querySelector('.top-section').offsetHeight;
+                const zoomProgress = Math.min(1, scrollTop / (topSectionHeight * 0.8));
+                const currentScale = 1 + (zoomProgress * 0.75);
+                selectorCarImage.style.setProperty('--s', currentScale);
+                // 同步更新流光層的縮放
+                glintEffect.style.setProperty('--s', currentScale);
+            }
+        }, { passive: true });
+
+        // --- Task 1: Custom Cursor Logic ---
+        const cursor = document.getElementById('cursor');
+        const follower = document.getElementById('cursor-follower');
+        let cursorX = 0, cursorY = 0;
+        let followerX = 0, followerY = 0;
+
+        document.addEventListener('mousemove', (e) => {
+            cursorX = e.clientX;
+            cursorY = e.clientY;
+            // 立即移動小圓點
+            cursor.style.left = `${cursorX}px`;
+            cursor.style.top = `${cursorY}px`;
+        });
+
+        // 緩動跟隨效果
+        function animateFollower() {
+            followerX += (cursorX - followerX) * 0.1;
+            followerY += (cursorY - followerY) * 0.1;
+            follower.style.left = `${followerX}px`;
+            follower.style.top = `${followerY}px`;
+            requestAnimationFrame(animateFollower);
+        }
+        animateFollower();
+
+        // 偵測可點擊元素
+        const clickables = document.querySelectorAll('a, button, .selector-dot, .color-btn-wrapper, .menu-btn, .close-menu');
+        clickables.forEach(el => {
+            el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
+            el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
+        });
+
+        // --- Task 3: Full Screen Menu Toggle ---
+        function toggleMenu() {
+            const menu = document.getElementById('full-menu');
+            menu.classList.toggle('active');
+
+            // 開啟選單時禁止主頁面滑動
+            if (menu.classList.contains('active')) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        // 修改原本的 menu-btn 監聽
+        document.querySelector('.menu-btn').addEventListener('click', toggleMenu);
+
+        // --- Smooth Scrolling for Navigation ---
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+
+                if (targetElement) {
+                    const headerHeight = document.querySelector('header').offsetHeight;
+                    // 減去 header 高度，只留 10px 的微小緩衝
+                    const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - headerHeight - 10;
+
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        // --- ScrollSpy: Update Active Navigation Item ---
+        const sections = document.querySelectorAll('main > div, .top-section, body');
+        const navLinks = document.querySelectorAll('nav ul li a');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            const headerHeight = document.querySelector('header').offsetHeight + 100;
+
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (window.pageYOffset >= sectionTop - headerHeight) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            // Special case for footer/bottom
+            if ((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight - 50) {
+                current = 'footer';
+            }
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').includes(current)) {
+                    link.classList.add('active');
+                }
+            });
+        }, { passive: true });
+        // --- Feature: Mobile Cursor Adjustment ---
+        if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
+            document.body.style.cursor = 'auto';
+            const cur = document.getElementById('cursor');
+            const fol = document.getElementById('cursor-follower');
+            if (cur) cur.style.display = 'none';
+            if (fol) fol.style.display = 'none';
+        }
+    </script>
+</body>
+
+</html>
