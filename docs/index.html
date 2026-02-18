@@ -1224,7 +1224,19 @@
             }
 
             .top-section .bg-text {
-                font-size: 120px;
+                font-size: 100px;
+                letter-spacing: 20px;
+            }
+
+            .car-container {
+                padding: 0 20px 40px 20px;
+                margin-top: -20px;
+            }
+
+            .car-name {
+                font-size: 32px;
+                letter-spacing: 4px;
+                margin-bottom: 30px;
             }
 
 
@@ -1395,18 +1407,27 @@
             letter-spacing: 1px;
         }
 
-        @media (max-width: 768px) {
+        @media (max-width: 480px) {
             .footer-grid {
                 grid-template-columns: 1fr;
                 gap: 40px;
+                text-align: center;
             }
 
-            .car-specs {
-                gap: 30px;
+            .footer-info,
+            .footer-desc {
+                max-width: 100%;
+                margin: 0 auto;
             }
 
-            .spec-value {
-                font-size: 24px;
+            .footer-social-links {
+                justify-content: center;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
             }
         }
     </style>
